@@ -11,7 +11,6 @@ const client = new Client({
 
 async function connectDb() {
   try {   
-    console.log(process.env.DB_USER) 
     await client.connect()
     console.log('Connected to PostgreSQL database');
   } catch (err) {

@@ -1,10 +1,11 @@
 import { connectDb } from './utils/db/config.js'
 import express from 'express'
-import { addUser } from './handlers/users/post.js'
+import { createUser } from './handlers/users/post.js'
 
 const app = express()
+app.use(express.json())
 
-app.post('/user', addUser)
+app.post('/user', createUser)
 
 app.listen(3000, () => {
     connectDb()
