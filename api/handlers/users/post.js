@@ -1,5 +1,6 @@
 import { client } from "../../utils/db/config.js"
 import { generateUUID } from "../../utils/utility.js"
+import { validateBody } from "../../utils/validate.js"
 
 const addDataToDb = async (data) => {
     try {
@@ -14,8 +15,16 @@ const addDataToDb = async (data) => {
     
 }
 export async function createUser(req, res) {
-    const response = await addDataToDb(req.body)
+   try{
+    const payload = req.body
+    validateBody(payload)
+    const response = await addDataToDb(payload)
     if(response) {
         return res.send("User created successfully")
     }
+   }
+   catch(err){
+    res.status(400).json({ error: JSON.parse(err.message) })
+   }
+    
 }

@@ -5,7 +5,7 @@ import { createUser } from './handlers/users/post.js'
 const app = express()
 app.use(express.json())
 
-app.post('/user', createUser)
+app.post('/createUser', createUser)
 
 app.listen(3000, () => {
     connectDb()
